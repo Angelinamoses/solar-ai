@@ -144,11 +144,22 @@ models/best.pt
 
 ## Launch the Dashboard
 
+### Option 1: One-Click Launch (Windows)
+Double-click `run_dashboard.bat` in File Explorer, or run:
 ```powershell
-streamlit run app.py
+.\run_dashboard.bat
+```
+Or with PowerShell:
+```powershell
+.\run_dashboard.ps1
 ```
 
-The dashboard will open at `http://localhost:8501`.
+### Option 2: Command Line
+```powershell
+python -m streamlit run app.py
+```
+
+The dashboard will open automatically in your browser at `http://localhost:8501`.
 
 ---
 

@@ -353,10 +353,17 @@ elif page == "🔍 Inspect Image":
     else:
         st.markdown('<div class="section-header">Risk Assessment</div>', unsafe_allow_html=True)
         for cr in risk_report["class_results"]:
+            priority_emoji = {"Critical": "🔴", "High": "🟠", "Medium": "🟡", "Low": "🟢"}.get(
+                cr["priority"], "⚪"
+            )
             with st.expander(
-                f"{_badge(cr['priority'])} &nbsp; {cr['class_name']}",
+                f"{priority_emoji} {cr['priority']} — {cr['class_name']}",
                 expanded=True,
             ):
+                st.markdown(
+                    f"**Priority:** {_badge(cr['priority'])}",
+                    unsafe_allow_html=True,
+                )
                 st.markdown(f"**Reason:** {cr['reason']}")
                 st.markdown(f"**Suggested Action:** {cr['suggested_action']}")
                 interval = cr.get("review_interval_days")
