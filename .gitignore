@@ -1,0 +1,49 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Private dataset — do NOT commit
+data/ImageSet/
+data/quick_subset/
+data/uploads/
+data/outputs/
+data/processed/
+
+# Trained model weights — large binary files
+models/*.pt
+models/runs/
+models/training_meta.json
+
+# Local database
+data/solarguard.db
+data/*.db
+
+# Reports
+reports/
+
+# Streamlit
+.streamlit/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

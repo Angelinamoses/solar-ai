@@ -1,0 +1,66 @@
+{
+  "_comment": "Provisional demonstration rules only. All priorities and review intervals must be verified by qualified solar engineers before operational use.",
+  "version": "1.0",
+  "class_rules": {
+    "MultiByPassed": {
+      "priority": "High",
+      "reason": "Multiple bypass diodes activated — string-level shading or cell damage probable.",
+      "suggested_action": "Physical inspection of affected string; check bypass diode continuity.",
+      "review_interval_days": 14,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    },
+    "MultiDiode": {
+      "priority": "High",
+      "reason": "Multiple diode anomalies detected — potential diode failure across cells.",
+      "suggested_action": "Thermal re-inspection and I-V curve measurement recommended.",
+      "review_interval_days": 14,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    },
+    "MultiHotSpot": {
+      "priority": "Critical",
+      "reason": "Multiple hot-spots detected — elevated risk of cell damage or fire.",
+      "suggested_action": "Prioritise immediate ground inspection; isolate string if temperature differential is confirmed elevated.",
+      "review_interval_days": 3,
+      "severity_note": "Thermal pixel values in this dataset are grayscale renderings, not calibrated temperatures."
+    },
+    "SingleByPassed": {
+      "priority": "Medium",
+      "reason": "Single bypass diode activated — localised shading or cell issue.",
+      "suggested_action": "Schedule inspection within standard maintenance window; verify with I-V trace.",
+      "review_interval_days": 30,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    },
+    "SingleDiode": {
+      "priority": "Medium",
+      "reason": "Single diode anomaly — isolated cell behaviour outside normal range.",
+      "suggested_action": "Note for next scheduled maintenance inspection.",
+      "review_interval_days": 30,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    },
+    "SingleHotSpot": {
+      "priority": "High",
+      "reason": "Single hot-spot detected — localised cell heating.",
+      "suggested_action": "Flag for next inspection cycle; monitor for progression.",
+      "review_interval_days": 14,
+      "severity_note": "Thermal pixel values in this dataset are grayscale renderings, not calibrated temperatures."
+    },
+    "StringOpenCircuit": {
+      "priority": "Critical",
+      "reason": "Open-circuit condition detected — string likely offline, energy loss ongoing.",
+      "suggested_action": "Immediate investigation; check wiring continuity and combiner-box connections.",
+      "review_interval_days": 1,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    },
+    "StringReversedPolarity": {
+      "priority": "Critical",
+      "reason": "Reversed polarity detected — potential wiring fault; safety risk.",
+      "suggested_action": "Immediate isolation and inspection by qualified electrician.",
+      "review_interval_days": 1,
+      "severity_note": "Model confidence does not confirm severity; field verification required."
+    }
+  },
+  "priority_order": ["Critical", "High", "Medium", "Low"],
+  "no_detection_message": "No supported fault detected in this image.",
+  "no_detection_note": "Absence of a detected fault does not confirm that the panel is healthy. The model may miss faults outside its training distribution.",
+  "disclaimer": "All priorities, suggested actions, and review intervals are provisional demonstration rules generated from a single-session training dataset. They must not be used for operational maintenance decisions without verification by qualified personnel."
+}
