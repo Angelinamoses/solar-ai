@@ -168,10 +168,10 @@ def prepare_dataset() -> dict:
         )
         writer.writeheader()
         writer.writerows(audit_rows)
-    print(f"\nAudit CSV written → {audit_csv_path} ({len(audit_rows)} malformed lines)")
+    print(f"\nAudit CSV written -> {audit_csv_path} ({len(audit_rows)} malformed lines)")
 
     # ---- build processed copy -----------------------------------------------
-    print(f"\nBuilding cleaned dataset → {PROCESSED_DIR}")
+    print(f"\nBuilding cleaned dataset -> {PROCESSED_DIR}")
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
     bad_files_set: set[str] = {row["label_file"] for row in audit_rows}
@@ -236,7 +236,7 @@ def prepare_dataset() -> dict:
     new_yaml_path = PROCESSED_DIR / "data.yaml"
     with open(new_yaml_path, "w", encoding="utf-8") as f:
         yaml.dump(new_yaml, f, default_flow_style=False, allow_unicode=True)
-    print(f"\ndata.yaml written → {new_yaml_path}")
+    print(f"\ndata.yaml written -> {new_yaml_path}")
 
     # ---- write dataset summary -----------------------------------------------
     summary = {
@@ -252,7 +252,7 @@ def prepare_dataset() -> dict:
     summary_path = PROCESSED_DIR / "dataset_summary.json"
     with open(summary_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
-    print(f"Dataset summary written → {summary_path}")
+    print(f"Dataset summary written -> {summary_path}")
 
     return summary
 

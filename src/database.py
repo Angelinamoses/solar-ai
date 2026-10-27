@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -80,7 +80,7 @@ def save_inspection(
     Persist an inspection and its detections.  Returns the new inspection ID.
     """
     init_db()
-    timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     overall_priority = risk_report.get("overall_priority", "None")
 
     with _connect() as conn:

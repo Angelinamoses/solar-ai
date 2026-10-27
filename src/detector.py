@@ -202,7 +202,7 @@ def run_inference(
     # Build annotated image via ultralytics plot()
     try:
         annotated_array = result.plot()
-        annotated_pil = Image.fromarray(annotated_array[..., ::-1])  # BGR→RGB
+        annotated_pil = Image.fromarray(annotated_array[..., ::-1])  # BGR->RGB
     except Exception:
         annotated_pil = rgb_image
 

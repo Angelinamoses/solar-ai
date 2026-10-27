@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import csv
 import io
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -41,7 +41,7 @@ def detections_to_csv_bytes(
             "review_interval_days",
         ]
     )
-    ts = timestamp or datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    ts = timestamp or datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     for det in detections:
         bbox = det.get("bbox", [None, None, None, None])
         while len(bbox) < 4:
@@ -93,7 +93,7 @@ def save_report_to_disk(
     Returns the path of the saved file.
     """
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    ts = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     stem = Path(filename).stem[:40]
     fname = f"report_{ts}_{stem}.csv"
     if inspection_id is not None:

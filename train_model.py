@@ -183,7 +183,7 @@ def train(args: argparse.Namespace) -> None:
     print(f"\nLoading YOLOv8n pretrained weights...")
     model = YOLO("yolov8n.pt")
 
-    print(f"Starting training → {project_dir / run_name}")
+    print(f"Starting training -> {project_dir / run_name}")
     print("=" * 60)
 
     results = model.train(
@@ -218,7 +218,7 @@ def train(args: argparse.Namespace) -> None:
     best_dst = MODEL_DIR / "best.pt"
     if best_src.exists():
         shutil.copy2(best_src, best_dst)
-        print(f"\nBest weights copied → {best_dst}")
+        print(f"\nBest weights copied -> {best_dst}")
     else:
         print(f"WARNING: best.pt not found at {best_src}")
 
@@ -236,7 +236,7 @@ def train(args: argparse.Namespace) -> None:
     meta_path = MODEL_DIR / "training_meta.json"
     with open(meta_path, "w") as f:
         json.dump(meta, f, indent=2)
-    print(f"Training metadata saved → {meta_path}")
+    print(f"Training metadata saved -> {meta_path}")
     print("\nTraining complete.")
 
 

@@ -38,10 +38,18 @@ class TestDatabase:
         db_module.DB_PATH = Path(self._tmp.name) / "test.db"
 
     def teardown_method(self):
-        """Restore DB_PATH and clean up temp dir."""
+        """Restore DB_PATH and clean up temp dir.
+
+        On Windows, SQLite WAL mode keeps the .db file open even after the
+        connection context manager exits (WAL/SHM files may remain).  Use
+        ignore_cleanup_errors so teardown never fails due to this OS-level
+        lock; the temp directory will be reclaimed by the OS on process exit.
+        """
+        import gc
         import src.database as db_module
         db_module.DB_PATH = self._orig_path
-        self._tmp.cleanup()
+        gc.collect()  # encourage Python to close any lingering sqlite3 Connection objects
+        self._tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True)
 
     def _get_db(self):
         import src.database as db_module
